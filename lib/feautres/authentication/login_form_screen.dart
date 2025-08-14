@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/feautres/authentication/widgets/form_button.dart';
+import 'package:tiktok_clone/feautres/onboarding/interests_screen.dart';
 
 class LoginFormScreen extends StatefulWidget {
   const LoginFormScreen({super.key});
@@ -13,11 +14,15 @@ class LoginFormScreen extends StatefulWidget {
 class _LoginFormScreenState extends State<LoginFormScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  Map<String, String> formData = {};
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         // No Error
         _formKey.currentState!.save();
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (context) => InterestsScreen()));
       }
     }
 
@@ -38,19 +43,31 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
               TextFormField(
                 decoration: InputDecoration(hintText: "Email"),
                 validator: (value) {
-                  // return "i dont like your email";
+                  if (value != null && value.isEmpty) {
+                    return "Please write your email";
+                  }
                   return null;
                 },
-                onSaved: (newValue) => print(newValue),
+                onSaved: (newValue) {
+                  if (newValue != null) {
+                    formData['email'] = newValue;
+                  }
+                },
               ),
               Gaps.v16,
               TextFormField(
                 decoration: InputDecoration(hintText: "Password"),
                 validator: (value) {
-                  // return "wrong password";
+                  if (value != null && value.isEmpty) {
+                    return "Plase write your password";
+                  }
                   return null;
                 },
-                onSaved: (newValue) => print(newValue),
+                onSaved: (newValue) {
+                  if (newValue != null) {
+                    formData['password'] = newValue;
+                  }
+                },
               ),
               Gaps.v28,
               GestureDetector(
