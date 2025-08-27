@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/feautres/main_navigation/widgets/nav_tab.dart';
-import 'package:tiktok_clone/feautres/main_navigation/stf_screen.dart';
 import 'package:tiktok_clone/feautres/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok_clone/feautres/videos/video_timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   MainNavigationScreen({super.key});
@@ -51,10 +51,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Offstage(offstage: _selectedIndex != 0, child: StfScreen()),
-          Offstage(offstage: _selectedIndex != 1, child: StfScreen()),
-          Offstage(offstage: _selectedIndex != 3, child: StfScreen()),
-          Offstage(offstage: _selectedIndex != 4, child: StfScreen()),
+          Offstage(offstage: _selectedIndex != 0, child: VideoTimelineScreen()),
+          Offstage(offstage: _selectedIndex != 1, child: Container()),
+          Offstage(offstage: _selectedIndex != 3, child: Container()),
+          Offstage(offstage: _selectedIndex != 4, child: Container()),
         ],
       ),
       bottomNavigationBar: BottomAppBar(

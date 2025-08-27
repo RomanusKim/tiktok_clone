@@ -7,6 +7,7 @@ import 'package:tiktok_clone/feautres/main_navigation/main_navigation_screen.dar
 import 'package:tiktok_clone/feautres/onboarding/interests_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const TikTokApp());
 }
 
