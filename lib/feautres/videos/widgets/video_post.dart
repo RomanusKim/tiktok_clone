@@ -76,7 +76,9 @@ class _VideoPostState extends State<VideoPost>
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
-    if (info.visibleFraction == 1 && !_videoPlayerController.value.isPlaying) {
+    if (info.visibleFraction == 1 &&
+        !_isPaused &&
+        !_videoPlayerController.value.isPlaying) {
       _videoPlayerController.play();
     }
   }
@@ -98,7 +100,7 @@ class _VideoPostState extends State<VideoPost>
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      // 데이터 이력같은거 하면 도움될 듯
+      // 데이터 이력같은거 하면 도움될 듯 (화면이 다 보였는지 아닌지 => 셀이 다 보였는지 아닌지)
       key: Key("${widget.index}"),
       onVisibilityChanged: _onVisibilityChanged,
       child: Stack(
